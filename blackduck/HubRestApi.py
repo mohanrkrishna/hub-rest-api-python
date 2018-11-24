@@ -444,7 +444,7 @@ class HubInstance(object):
     def get_users(self, limit=9999):
         paramstring = "?limit={}&offset=0".format(limit)
         headers = self.get_headers()
-        url = self.get_apibase() + "/api/users" + paramstring
+        url = self.config['baseurl'] + "/api/users" + paramstring
         response = requests.get(url, headers=headers, verify = not self.config['insecure'])
         jsondata = response.json()
         return jsondata
