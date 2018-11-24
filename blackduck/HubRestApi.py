@@ -441,6 +441,14 @@ class HubInstance(object):
         response = requests.delete(url, headers=headers, verify = not self.config['insecure'])
         return response
 
+    def get_users(self, limit=9999):
+        paramstring = "?limit={}&offset=0".format(limit)
+        headers = self.get_headers()
+        url = self.get_apibase() + "/api/users" + paramstring
+        response = requests.get(url, headers=headers, verify = not self.config['insecure'])
+        jsondata = response.json()
+        return jsondata
+
     def execute_delete(self, url):
         headers = self.get_headers()
         response = requests.delete(url, headers=headers, verify = not self.config['insecure'])
